@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      onGenerateRoute: AppRouters().onGenerateRoute,
     );
   }
 }

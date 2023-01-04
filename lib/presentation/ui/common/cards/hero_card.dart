@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:movie_database/presentation/model/hero_card_data.dart';
 import 'package:movie_database/presentation/ui/common/general/rating_view.dart';
+import 'package:movie_database/router/app_routers.dart';
 
 class HeroCard extends StatelessWidget {
   HeroCardModel heroCardModel;
@@ -13,31 +14,36 @@ class HeroCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double width = 0.85 * size.width;
-    return Align(
-      alignment: Alignment.topLeft,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-            minHeight: 180, maxHeight: 200, minWidth: 200, maxWidth: width),
-        child: Card(
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Stack(
-            alignment: AlignmentDirectional.bottomCenter,
-            clipBehavior: Clip.hardEdge,
-            children: [
-              Image.network(
-                heroCardModel.imageUrl,
-                fit: BoxFit.fill,
-              ),
-              FrostedGlass(
-                header: heroCardModel.header,
-                title: heroCardModel.title,
-                rating: heroCardModel.rating,
-              )
-            ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(AppScreenPath.detailPath);
+      },
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+              minHeight: 180, maxHeight: 200, minWidth: 200, maxWidth: width),
+          child: Card(
+            elevation: 10.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Stack(
+              alignment: AlignmentDirectional.bottomCenter,
+              clipBehavior: Clip.hardEdge,
+              children: [
+                Image.network(
+                  heroCardModel.imageUrl,
+                  fit: BoxFit.fill,
+                ),
+                FrostedGlass(
+                  header: heroCardModel.header,
+                  title: heroCardModel.title,
+                  rating: heroCardModel.rating,
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -77,9 +83,10 @@ class FrostedGlass extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                     child: Text(
                       header ?? "",
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                        fontWeight: FontWeight.bold
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                   RatingView(text: rating ?? ""),
