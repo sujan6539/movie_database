@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_database/business_logic/bloc/bottom_nav_page_cubit.dart';
+import 'package:movie_database/business_logic/cubit/bottom_nav_page_cubit.dart';
 import 'package:movie_database/presentation/screens/catalog_page.dart';
 import 'package:movie_database/presentation/screens/directory_page.dart';
 import 'package:movie_database/presentation/screens/home_page.dart';
