@@ -48,12 +48,13 @@ class TrendingSwimLane extends StatelessWidget {
                     itemCount: response?.results?.length,
                     itemBuilder: (BuildContext context, int index) {
                       return HeroCard(
-                          heroCardModel: HeroCardModel(
-                              imageUrl:
-                                  "${ApiConstant.imageBaseURL}${response?.results![index].backdropPath}",
-                              header: response?.results![index].title ?? '',
-                              title:
-                                  response?.results![index].releaseDate ?? ''));
+                        heroCardModel: HeroCardModel(
+                            imageUrl:
+                                "${ApiConstant.imageBaseURL}${response?.results![index].backdropPath}",
+                            header: response?.results![index].title ?? '',
+                            title: response?.results![index].releaseDate ?? '',
+                            rating: response?.results![index].voteAverage?.toStringAsFixed(1) ?? ''),
+                      );
                     }),
               ),
               SizedBox(
@@ -68,7 +69,9 @@ class TrendingSwimLane extends StatelessWidget {
                         imageUrl:
                             "${ApiConstant.imageBaseURL}${response?.results![index].posterPath}",
                         title: response?.results![index].title ?? '',
-                        genre: response?.results![index].mediaType ?? '');
+                        genre: response?.results![index].mediaType ?? '',
+                        rating: response?.results![index].voteAverage?.toStringAsFixed(1) ?? '',
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Container(

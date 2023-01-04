@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movie_database/presentation/ui/common/general/rating_view.dart';
 
 class PosterCard extends StatelessWidget {
   String imageUrl;
   String title;
   String genre;
+  String rating;
 
   PosterCard(
       {required this.imageUrl,
       required this.title,
       required this.genre,
+      required this.rating,
       Key? key})
       : super(key: key);
 
@@ -28,9 +31,17 @@ class PosterCard extends StatelessWidget {
                 decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0))),
-                child: Image.network(
-                  imageUrl,
-                  scale: 2.0,
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Image.network(
+                      imageUrl,
+                      scale: 2.0,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(0, 12, 10, 0),
+                        child: RatingView(text: rating))
+                  ],
                 )),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 8.0, 8.0, 8.0),
